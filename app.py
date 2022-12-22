@@ -11,11 +11,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Memo(db.Model):
-    __tablename__ = 'Test'
+    __tablename__ = 'Memo'
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(100), nullable=False)
     author = db.Column(db.String(100), nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now(pytz.timezone('Asia/Tokyo')))
+    created_at = db.Column(db.Date, nullable=False, default=datetime.now().date())
 
 @app.before_first_request
 def init():
