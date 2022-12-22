@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import pytz
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///Memo.db'
@@ -17,14 +16,17 @@ class Memo(db.Model):
     author = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.Date, nullable=False, default=datetime.now().date())
 
+
 @app.before_first_request
 def init():
     db.create_all()
 
+
 @app.route('/', methods=['GET'])
 def index():
     datas = Memo.query.all()
-    return render_template('index.html', memos = datas)
+    return render_template('index.html', memos=datas)
+
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():

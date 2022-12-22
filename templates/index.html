@@ -8,13 +8,24 @@
 </head>
 <body>
     <h1>Memo</h1>
-    <a href="/create">Create New Memo</a>
-    {% for memo in memos %}
-    <div>
-        <p>{{ memo.text }}</p>
-        <p>{{ memo.author }}</p>
-        <p>作成日時：{{ memo.created_at }}</p>
+    <div class="memo">
+        <table>
+            <thead>
+                <tr>
+                    <th>Memo</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for memo in memos %}
+                <tr>
+                    <th>{{ memo.text }}</th>
+                    <th>{{ memo.author }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-    {% endfor %}
+    <a href="/create">Create New Memo</a>
 </body>
 </html>
